@@ -30,7 +30,12 @@ class AssistantState(enum.Enum):
 
 # Valid state transitions: from_state -> set of allowed to_states
 VALID_TRANSITIONS: dict[AssistantState, set[AssistantState]] = {
-    AssistantState.IDLE: {AssistantState.LISTENING, AssistantState.ERROR},
+    AssistantState.IDLE: {
+        AssistantState.LISTENING,
+        AssistantState.VERIFYING,  # Direct to verifying after wake word
+        AssistantState.THINKING,   # Direct to thinking if verification is off
+        AssistantState.ERROR,
+    },
     AssistantState.LISTENING: {
         AssistantState.VERIFYING,
         AssistantState.THINKING,
@@ -38,8 +43,9 @@ VALID_TRANSITIONS: dict[AssistantState, set[AssistantState]] = {
         AssistantState.ERROR,
     },
     AssistantState.VERIFYING: {
-        AssistantState.LISTENING,  # verified -> continue listening for command
-        AssistantState.IDLE,  # verification failed -> ignore
+        AssistantState.THINKING,  # verified -> process command
+        AssistantState.LISTENING, # fallback if still used somewhere
+        AssistantState.IDLE,      # verification failed -> ignore
         AssistantState.ERROR,
     },
     AssistantState.THINKING: {

@@ -1,0 +1,380 @@
+2026-09-04 22:17:22 │ INFO     │ temiradam                           │ Logging initialized: level=INFO, dir=logs
+2026-09-04 22:17:22 │ INFO     │ temiradam.main                      │ Starting Speaker Enrollment...
+2026-09-04 22:17:22 │ INFO     │ temiradam.speaker.enrollment        │ Starting speaker enrollment process...
+2026-09-04 22:17:22 │ INFO     │ temiradam.speaker.enrollment        │ Recording sample 1/3 for 5.0 seconds.
+2026-09-04 22:17:22 │ ERROR    │ temiradam.main                      │ Enrollment error
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/main.py", line 56, in run_enrollment
+    embedding_path = enrollment.enroll()
+  File "/home/estemis1/TemirAdam/speaker/enrollment.py", line 49, in enroll
+    audio = self._record_sample(i)
+  File "/home/estemis1/TemirAdam/speaker/enrollment.py", line 80, in _record_sample
+    capture = AudioCapture(self.audio_config)
+  File "/home/estemis1/TemirAdam/utils/audio.py", line 43, in __init__
+    self.frame_size = int(sample_rate * chunk_duration_ms / 1000)
+                          ~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for *: 'AudioConfig' and 'int'
+2026-09-04 22:26:31 │ INFO     │ temiradam                           │ Logging initialized: level=INFO, dir=logs
+2026-09-04 22:26:31 │ INFO     │ temiradam.main                      │ Starting Speaker Enrollment...
+2026-09-04 22:26:31 │ INFO     │ temiradam.speaker.enrollment        │ Starting speaker enrollment process...
+2026-09-04 22:26:31 │ INFO     │ temiradam.speaker.enrollment        │ Recording sample 1/3 for 5.0 seconds.
+2026-09-04 22:26:31 │ INFO     │ temiradam.speaker.enrollment        │ Please speak now (Sample 1)...
+2026-09-04 22:26:36 │ INFO     │ temiradam.speaker.enrollment        │ Recording finished.
+2026-09-04 22:26:36 │ INFO     │ temiradam.speaker.enrollment        │ Saved sample audio to data/speaker_profile/sample_1.wav
+2026-09-04 22:26:37 │ INFO     │ temiradam.speaker.enrollment        │ Waiting 2 seconds before the next recording...
+2026-09-04 22:26:39 │ INFO     │ temiradam.speaker.enrollment        │ Recording sample 2/3 for 5.0 seconds.
+2026-09-04 22:26:39 │ INFO     │ temiradam.speaker.enrollment        │ Please speak now (Sample 2)...
+2026-09-04 22:26:44 │ INFO     │ temiradam.speaker.enrollment        │ Recording finished.
+2026-09-04 22:26:44 │ INFO     │ temiradam.speaker.enrollment        │ Saved sample audio to data/speaker_profile/sample_2.wav
+2026-09-04 22:26:44 │ INFO     │ temiradam.speaker.enrollment        │ Waiting 2 seconds before the next recording...
+2026-09-04 22:26:46 │ INFO     │ temiradam.speaker.enrollment        │ Recording sample 3/3 for 5.0 seconds.
+2026-09-04 22:26:46 │ INFO     │ temiradam.speaker.enrollment        │ Please speak now (Sample 3)...
+2026-09-04 22:26:51 │ INFO     │ temiradam.speaker.enrollment        │ Recording finished.
+2026-09-04 22:26:51 │ INFO     │ temiradam.speaker.enrollment        │ Saved sample audio to data/speaker_profile/sample_3.wav
+2026-09-04 22:26:51 │ INFO     │ temiradam.speaker.enrollment        │ Successfully saved robust speaker embedding to data/speaker_profile/embedding.npy
+2026-09-04 22:26:51 │ INFO     │ temiradam.main                      │ Enrollment completed successfully.
+2026-09-04 22:27:04 │ INFO     │ temiradam                           │ Logging initialized: level=INFO, dir=logs
+2026-09-04 22:27:04 │ INFO     │ temiradam.main                      │ Starting Speaker Enrollment...
+2026-09-04 22:27:04 │ INFO     │ temiradam.speaker.enrollment        │ Starting speaker enrollment process...
+2026-09-04 22:27:04 │ INFO     │ temiradam.speaker.enrollment        │ Recording sample 1/3 for 5.0 seconds.
+2026-09-04 22:27:04 │ INFO     │ temiradam.speaker.enrollment        │ Please speak now (Sample 1)...
+2026-09-04 22:27:09 │ INFO     │ temiradam.speaker.enrollment        │ Recording finished.
+2026-09-04 22:27:09 │ INFO     │ temiradam.speaker.enrollment        │ Saved sample audio to data/speaker_profile/sample_1.wav
+2026-09-04 22:27:10 │ INFO     │ temiradam.speaker.enrollment        │ Waiting 2 seconds before the next recording...
+2026-09-04 22:27:12 │ INFO     │ temiradam.speaker.enrollment        │ Recording sample 2/3 for 5.0 seconds.
+2026-09-04 22:27:12 │ INFO     │ temiradam.speaker.enrollment        │ Please speak now (Sample 2)...
+2026-09-04 22:27:17 │ INFO     │ temiradam.speaker.enrollment        │ Recording finished.
+2026-09-04 22:27:17 │ INFO     │ temiradam.speaker.enrollment        │ Saved sample audio to data/speaker_profile/sample_2.wav
+2026-09-04 22:27:17 │ INFO     │ temiradam.speaker.enrollment        │ Waiting 2 seconds before the next recording...
+2026-09-04 22:27:19 │ INFO     │ temiradam.speaker.enrollment        │ Recording sample 3/3 for 5.0 seconds.
+2026-09-04 22:27:19 │ INFO     │ temiradam.speaker.enrollment        │ Please speak now (Sample 3)...
+2026-09-04 22:27:33 │ INFO     │ temiradam                           │ Logging initialized: level=INFO, dir=logs
+2026-09-04 22:27:33 │ INFO     │ temiradam.main                      │ Starting Speaker Enrollment...
+2026-09-04 22:27:33 │ INFO     │ temiradam.speaker.enrollment        │ Starting speaker enrollment process...
+2026-09-04 22:27:33 │ INFO     │ temiradam.speaker.enrollment        │ Recording sample 1/3 for 5.0 seconds.
+2026-09-04 22:27:33 │ INFO     │ temiradam.speaker.enrollment        │ Please speak now (Sample 1)...
+2026-09-04 22:27:38 │ INFO     │ temiradam.speaker.enrollment        │ Recording finished.
+2026-09-04 22:27:38 │ INFO     │ temiradam.speaker.enrollment        │ Saved sample audio to data/speaker_profile/sample_1.wav
+2026-09-04 22:27:39 │ INFO     │ temiradam.speaker.enrollment        │ Waiting 2 seconds before the next recording...
+2026-09-04 22:27:41 │ INFO     │ temiradam.speaker.enrollment        │ Recording sample 2/3 for 5.0 seconds.
+2026-09-04 22:27:41 │ INFO     │ temiradam.speaker.enrollment        │ Please speak now (Sample 2)...
+2026-09-04 22:27:46 │ INFO     │ temiradam.speaker.enrollment        │ Recording finished.
+2026-09-04 22:27:46 │ INFO     │ temiradam.speaker.enrollment        │ Saved sample audio to data/speaker_profile/sample_2.wav
+2026-09-04 22:27:46 │ INFO     │ temiradam.speaker.enrollment        │ Waiting 2 seconds before the next recording...
+2026-09-04 22:27:48 │ INFO     │ temiradam.speaker.enrollment        │ Recording sample 3/3 for 5.0 seconds.
+2026-09-04 22:27:48 │ INFO     │ temiradam.speaker.enrollment        │ Please speak now (Sample 3)...
+2026-09-04 22:27:53 │ INFO     │ temiradam.speaker.enrollment        │ Recording finished.
+2026-09-04 22:27:53 │ INFO     │ temiradam.speaker.enrollment        │ Saved sample audio to data/speaker_profile/sample_3.wav
+2026-09-04 22:27:53 │ INFO     │ temiradam.speaker.enrollment        │ Successfully saved robust speaker embedding to data/speaker_profile/embedding.npy
+2026-09-04 22:27:53 │ INFO     │ temiradam.main                      │ Enrollment completed successfully.
+2026-09-04 22:28:08 │ INFO     │ temiradam                           │ Logging initialized: level=INFO, dir=logs
+2026-09-04 22:28:08 │ INFO     │ temiradam.main                      │ Initializing Темірадам Orchestrator...
+2026-09-04 22:28:08 │ INFO     │ temiradam.core.assistant            │ Starting Темірадам Assistant (3-tier LLM)...
+2026-09-04 22:28:08 │ INFO     │ temiradam.core.assistant            │ Models: EASY=qwen2.5:0.5b  MEDIUM=qwen3:4b  HARD=qwen3:8b
+2026-09-04 22:28:08 │ INFO     │ temiradam.core.lifecycle            │ Loading model: wakeword
+2026-09-04 22:28:08 │ INFO     │ temiradam.wakeword.detector         │ Loading wake word detector model (whisper-tiny)...
+2026-09-04 22:28:20 │ INFO     │ temiradam.wakeword.detector         │ Wake word detector model loaded successfully.
+2026-09-04 22:28:20 │ INFO     │ temiradam.core.lifecycle            │ Model loaded: wakeword (11.45s)
+2026-09-04 22:28:34 │ ERROR    │ temiradam.wakeword.detector         │ Error recording audio: 'AudioCapture' object has no attribute 'read'
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/wakeword/detector.py", line 98, in listen
+    audio_data = audio_capture.read(16000 * 3)
+                 ^^^^^^^^^^^^^^^^^^
+AttributeError: 'AudioCapture' object has no attribute 'read'
+2026-09-04 22:28:34 │ ERROR    │ temiradam.wakeword.detector         │ Error recording audio: 'AudioCapture' object has no attribute 'read'
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/wakeword/detector.py", line 98, in listen
+    audio_data = audio_capture.read(16000 * 3)
+                 ^^^^^^^^^^^^^^^^^^
+AttributeError: 'AudioCapture' object has no attribute 'read'
+2026-09-04 22:28:34 │ ERROR    │ temiradam.wakeword.detector         │ Error recording audio: 'AudioCapture' object has no attribute 'read'
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/wakeword/detector.py", line 98, in listen
+    audio_data = audio_capture.read(16000 * 3)
+                 ^^^^^^^^^^^^^^^^^^
+AttributeError: 'AudioCapture' object has no attribute 'read'
+2026-09-04 22:28:38 │ ERROR    │ temiradam.wakeword.detector         │ Error recording audio: 'AudioCapture' object has no attribute 'read'
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/wakeword/detector.py", line 98, in listen
+    audio_data = audio_capture.read(16000 * 3)
+                 ^^^^^^^^^^^^^^^^^^
+AttributeError: 'AudioCapture' object has no attribute 'read'
+2026-09-04 22:28:39 │ ERROR    │ temiradam.wakeword.detector         │ Error recording audio: 'AudioCapture' object has no attribute 'read'
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/wakeword/detector.py", line 98, in listen
+    audio_data = audio_capture.read(16000 * 3)
+                 ^^^^^^^^^^^^^^^^^^
+AttributeError: 'AudioCapture' object has no attribute 'read'
+2026-09-04 22:28:42 │ ERROR    │ temiradam.wakeword.detector         │ Error recording audio: 'AudioCapture' object has no attribute 'read'
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/wakeword/detector.py", line 98, in listen
+    audio_data = audio_capture.read(16000 * 3)
+                 ^^^^^^^^^^^^^^^^^^
+AttributeError: 'AudioCapture' object has no attribute 'read'
+2026-09-04 22:28:43 │ ERROR    │ temiradam.wakeword.detector         │ Error recording audio: 'AudioCapture' object has no attribute 'read'
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/wakeword/detector.py", line 98, in listen
+    audio_data = audio_capture.read(16000 * 3)
+                 ^^^^^^^^^^^^^^^^^^
+AttributeError: 'AudioCapture' object has no attribute 'read'
+2026-09-04 22:28:43 │ ERROR    │ temiradam.wakeword.detector         │ Error recording audio: 'AudioCapture' object has no attribute 'read'
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/wakeword/detector.py", line 98, in listen
+    audio_data = audio_capture.read(16000 * 3)
+                 ^^^^^^^^^^^^^^^^^^
+AttributeError: 'AudioCapture' object has no attribute 'read'
+2026-09-04 22:29:08 │ INFO     │ temiradam.core.assistant            │ Assistant stopped by user
+2026-09-04 22:29:08 │ INFO     │ temiradam.core.assistant            │ Unloading heavy models (returning to IDLE)...
+2026-09-04 22:29:08 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen2.5:0.5b
+2026-09-04 22:29:08 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen2.5:0.5b
+2026-09-04 22:29:08 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:4b
+2026-09-04 22:29:08 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:4b
+2026-09-04 22:29:08 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:8b
+2026-09-04 22:29:08 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:8b
+2026-09-04 22:31:57 │ INFO     │ temiradam                           │ Logging initialized: level=INFO, dir=logs
+2026-09-04 22:31:57 │ INFO     │ temiradam.main                      │ Initializing Темірадам Orchestrator...
+2026-09-04 22:31:57 │ INFO     │ temiradam.core.assistant            │ Starting Темірадам Assistant (3-tier LLM)...
+2026-09-04 22:31:57 │ INFO     │ temiradam.core.assistant            │ Models: EASY=qwen2.5:0.5b  MEDIUM=qwen3:4b  HARD=qwen3:8b
+2026-09-04 22:31:57 │ INFO     │ temiradam.core.lifecycle            │ Loading model: wakeword
+2026-09-04 22:31:57 │ INFO     │ temiradam.wakeword.detector         │ Loading wake word detector model (whisper-tiny)...
+2026-09-04 22:31:58 │ INFO     │ temiradam.wakeword.detector         │ Wake word detector model loaded successfully.
+2026-09-04 22:31:58 │ INFO     │ temiradam.core.lifecycle            │ Model loaded: wakeword (0.81s)
+2026-09-04 22:32:42 │ INFO     │ temiradam.core.assistant            │ Assistant stopped by user
+2026-09-04 22:32:42 │ INFO     │ temiradam.core.assistant            │ Unloading heavy models (returning to IDLE)...
+2026-09-04 22:32:42 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen2.5:0.5b
+2026-09-04 22:32:42 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen2.5:0.5b
+2026-09-04 22:32:42 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:4b
+2026-09-04 22:32:42 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:4b
+2026-09-04 22:32:42 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:8b
+2026-09-04 22:32:42 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:8b
+2026-09-04 22:34:52 │ INFO     │ temiradam                           │ Logging initialized: level=INFO, dir=logs
+2026-09-04 22:34:52 │ INFO     │ temiradam.main                      │ Initializing Темірадам Orchestrator...
+2026-09-04 22:34:52 │ INFO     │ temiradam.core.assistant            │ Starting Темірадам Assistant (3-tier LLM)...
+2026-09-04 22:34:52 │ INFO     │ temiradam.core.assistant            │ Models: EASY=qwen2.5:0.5b  MEDIUM=qwen3:4b  HARD=qwen3:8b
+2026-09-04 22:34:52 │ INFO     │ temiradam.core.lifecycle            │ Loading model: wakeword
+2026-09-04 22:34:52 │ INFO     │ temiradam.wakeword.detector         │ Loading wake word detector model (whisper-tiny)...
+2026-09-04 22:34:53 │ INFO     │ temiradam.wakeword.detector         │ Wake word detector model loaded successfully.
+2026-09-04 22:34:53 │ INFO     │ temiradam.core.lifecycle            │ Model loaded: wakeword (0.83s)
+2026-09-04 22:34:53 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:34:57 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:35:10 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:35:17 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:35:23 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:35:36 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:35:38 │ INFO     │ temiradam.core.assistant            │ Assistant stopped by user
+2026-09-04 22:35:38 │ INFO     │ temiradam.core.assistant            │ Unloading heavy models (returning to IDLE)...
+2026-09-04 22:35:38 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen2.5:0.5b
+2026-09-04 22:35:38 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen2.5:0.5b
+2026-09-04 22:35:38 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:4b
+2026-09-04 22:35:38 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:4b
+2026-09-04 22:35:38 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:8b
+2026-09-04 22:35:38 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:8b
+2026-09-04 22:36:44 │ INFO     │ temiradam                           │ Logging initialized: level=INFO, dir=logs
+2026-09-04 22:36:44 │ INFO     │ temiradam.main                      │ Initializing Темірадам Orchestrator...
+2026-09-04 22:36:44 │ INFO     │ temiradam.core.assistant            │ Starting Темірадам Assistant (3-tier LLM)...
+2026-09-04 22:36:44 │ INFO     │ temiradam.core.assistant            │ Models: EASY=qwen2.5:0.5b  MEDIUM=qwen3:4b  HARD=qwen3:8b
+2026-09-04 22:36:44 │ INFO     │ temiradam.core.lifecycle            │ Loading model: wakeword
+2026-09-04 22:36:44 │ INFO     │ temiradam.wakeword.detector         │ Loading wake word detector model (whisper-tiny)...
+2026-09-04 22:36:44 │ INFO     │ temiradam.wakeword.detector         │ Wake word detector model loaded successfully.
+2026-09-04 22:36:44 │ INFO     │ temiradam.core.lifecycle            │ Model loaded: wakeword (0.76s)
+2026-09-04 22:36:44 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:36:50 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: '請不要讓我哋哋哋'
+2026-09-04 22:36:50 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:36:58 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: 'симирадом открой spotify'
+2026-09-04 22:36:58 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:37:08 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: 'și nu răna la cruis pătifiai'
+2026-09-04 22:37:08 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:37:14 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: 'semirada matumatumatumatumatumatu'
+2026-09-04 22:37:14 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:37:19 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: 'семир адам отгрось по твой'
+2026-09-04 22:37:19 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:37:28 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: 'سيما رأدام أدكرويس بجفائي'
+2026-09-04 22:37:28 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:37:30 │ INFO     │ temiradam.core.assistant            │ Assistant stopped by user
+2026-09-04 22:37:30 │ INFO     │ temiradam.core.assistant            │ Unloading heavy models (returning to IDLE)...
+2026-09-04 22:37:30 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen2.5:0.5b
+2026-09-04 22:37:30 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen2.5:0.5b
+2026-09-04 22:37:30 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:4b
+2026-09-04 22:37:30 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:4b
+2026-09-04 22:37:30 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:8b
+2026-09-04 22:37:30 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:8b
+2026-09-04 22:44:13 │ INFO     │ temiradam                           │ Logging initialized: level=INFO, dir=logs
+2026-09-04 22:44:13 │ INFO     │ temiradam.main                      │ Initializing Темірадам Orchestrator...
+2026-09-04 22:44:13 │ INFO     │ temiradam.core.assistant            │ Starting Темірадам Assistant (3-tier LLM)...
+2026-09-04 22:44:13 │ INFO     │ temiradam.core.assistant            │ Models: EASY=qwen2.5:0.5b  MEDIUM=qwen3:4b  HARD=qwen3:8b
+2026-09-04 22:44:13 │ INFO     │ temiradam.core.lifecycle            │ Loading model: wakeword
+2026-09-04 22:44:13 │ INFO     │ temiradam.wakeword.detector         │ Loading wake word detector model (whisper-tiny)...
+2026-09-04 22:44:14 │ INFO     │ temiradam.wakeword.detector         │ Wake word detector model loaded successfully.
+2026-09-04 22:44:14 │ INFO     │ temiradam.core.lifecycle            │ Model loaded: wakeword (0.75s)
+2026-09-04 22:44:14 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:44:20 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: 'всем радам привет'
+2026-09-04 22:44:20 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:44:27 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: '移密雅膽皮'
+2026-09-04 22:44:27 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:44:32 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: '進入了音樂'
+2026-09-04 22:44:32 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:44:38 │ INFO     │ temiradam.core.assistant            │ Assistant stopped by user
+2026-09-04 22:44:38 │ INFO     │ temiradam.core.assistant            │ Unloading heavy models (returning to IDLE)...
+2026-09-04 22:44:38 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen2.5:0.5b
+2026-09-04 22:44:38 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen2.5:0.5b
+2026-09-04 22:44:38 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:4b
+2026-09-04 22:44:38 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:4b
+2026-09-04 22:44:38 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:8b
+2026-09-04 22:44:38 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:8b
+2026-09-04 22:46:51 │ INFO     │ temiradam                           │ Logging initialized: level=INFO, dir=logs
+2026-09-04 22:46:51 │ INFO     │ temiradam.main                      │ Initializing Темірадам Orchestrator...
+2026-09-04 22:46:51 │ INFO     │ temiradam.core.assistant            │ Starting Темірадам Assistant (3-tier LLM)...
+2026-09-04 22:46:51 │ INFO     │ temiradam.core.assistant            │ Models: EASY=qwen2.5:0.5b  MEDIUM=qwen3:4b  HARD=qwen3:8b
+2026-09-04 22:46:52 │ INFO     │ temiradam.core.lifecycle            │ Loading model: wakeword
+2026-09-04 22:46:52 │ INFO     │ temiradam.wakeword.detector         │ Loading wake word detector model (whisper-tiny)...
+2026-09-04 22:46:52 │ INFO     │ temiradam.wakeword.detector         │ Wake word detector model loaded successfully.
+2026-09-04 22:46:52 │ INFO     │ temiradam.core.lifecycle            │ Model loaded: wakeword (0.75s)
+2026-09-04 22:46:52 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:46:58 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: 'зимерадам прият'
+2026-09-04 22:46:58 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:47:04 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: 'в киньми радам бюй'
+2026-09-04 22:47:04 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:47:10 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: 'демирадам привез'
+2026-09-04 22:47:10 │ INFO     │ temiradam.wakeword.detector         │ Wake word 'демирадам' detected!
+2026-09-04 22:47:10 │ INFO     │ temiradam.core.assistant            │ Wake word detected!
+2026-09-04 22:47:10 │ ERROR    │ temiradam.core.assistant            │ Error in main loop
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/core/assistant.py", line 133, in run
+    self._run_once()
+    ~~~~~~~~~~~~~~^^
+  File "/home/estemis1/TemirAdam/core/assistant.py", line 165, in _run_once
+    self.state_machine.transition(AssistantState.VERIFYING)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/estemis1/TemirAdam/core/state.py", line 107, in transition
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Invalid transition: idle -> verifying. Allowed: ['listening', 'error']
+2026-09-04 22:47:10 │ INFO     │ temiradam.core.state                │ State RESET: idle -> IDLE
+2026-09-04 22:47:10 │ INFO     │ temiradam.core.assistant            │ Unloading heavy models (returning to IDLE)...
+2026-09-04 22:47:10 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen2.5:0.5b
+2026-09-04 22:47:10 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen2.5:0.5b
+2026-09-04 22:47:10 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:4b
+2026-09-04 22:47:10 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:4b
+2026-09-04 22:47:10 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:8b
+2026-09-04 22:47:10 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:8b
+2026-09-04 22:47:11 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:47:22 │ INFO     │ temiradam.core.assistant            │ Assistant stopped by user
+2026-09-04 22:47:22 │ INFO     │ temiradam.core.assistant            │ Unloading heavy models (returning to IDLE)...
+2026-09-04 22:47:22 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen2.5:0.5b
+2026-09-04 22:47:22 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen2.5:0.5b
+2026-09-04 22:47:22 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:4b
+2026-09-04 22:47:22 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:4b
+2026-09-04 22:47:22 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:8b
+2026-09-04 22:47:22 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:8b
+2026-09-04 22:52:29 │ INFO     │ temiradam                           │ Logging initialized: level=INFO, dir=logs
+2026-09-04 22:52:29 │ INFO     │ temiradam.main                      │ Initializing Темірадам Orchestrator...
+2026-09-04 22:52:29 │ INFO     │ temiradam.core.assistant            │ Starting Темірадам Assistant (3-tier LLM)...
+2026-09-04 22:52:29 │ INFO     │ temiradam.core.assistant            │ Models: EASY=qwen2.5:0.5b  MEDIUM=qwen3:4b  HARD=qwen3:8b
+2026-09-04 22:52:29 │ INFO     │ temiradam.core.lifecycle            │ Loading model: wakeword
+2026-09-04 22:52:29 │ INFO     │ temiradam.wakeword.detector         │ Loading wake word detector model (whisper-small)...
+2026-09-04 22:52:53 │ INFO     │ temiradam.wakeword.detector         │ Wake word detector model loaded successfully.
+2026-09-04 22:52:53 │ INFO     │ temiradam.core.lifecycle            │ Model loaded: wakeword (23.95s)
+2026-09-04 22:52:53 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:53:08 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: 'привет'
+2026-09-04 22:53:08 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:53:13 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: 'хлайсон'
+2026-09-04 22:53:13 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:53:19 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: 'калайсин'
+2026-09-04 22:53:19 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:53:23 │ INFO     │ temiradam.core.assistant            │ Assistant stopped by user
+2026-09-04 22:53:23 │ INFO     │ temiradam.core.assistant            │ Unloading heavy models (returning to IDLE)...
+2026-09-04 22:53:23 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen2.5:0.5b
+2026-09-04 22:53:23 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen2.5:0.5b
+2026-09-04 22:53:23 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:4b
+2026-09-04 22:53:23 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:4b
+2026-09-04 22:53:23 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:8b
+2026-09-04 22:53:23 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:8b
+2026-09-04 22:56:15 │ INFO     │ temiradam                           │ Logging initialized: level=INFO, dir=logs
+2026-09-04 22:56:15 │ INFO     │ temiradam.main                      │ Initializing Темірадам Orchestrator...
+2026-09-04 22:56:15 │ INFO     │ temiradam.core.assistant            │ Starting Темірадам Assistant (3-tier LLM)...
+2026-09-04 22:56:15 │ INFO     │ temiradam.core.assistant            │ Models: EASY=qwen2.5:0.5b  MEDIUM=qwen3:4b  HARD=qwen3:8b
+2026-09-04 22:56:15 │ INFO     │ temiradam.core.lifecycle            │ Loading model: wakeword
+2026-09-04 22:56:15 │ INFO     │ temiradam.wakeword.detector         │ Loading wake word detector model (whisper-small)...
+2026-09-04 22:56:16 │ INFO     │ temiradam.wakeword.detector         │ Wake word detector model loaded successfully.
+2026-09-04 22:56:16 │ INFO     │ temiradam.core.lifecycle            │ Model loaded: wakeword (1.26s)
+2026-09-04 22:56:16 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:56:22 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: 'привет'
+2026-09-04 22:56:22 │ INFO     │ temiradam.wakeword.detector         │ ❌ Имя 'Темірадам' не названо, игнорирую фразу.
+2026-09-04 22:56:22 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:56:32 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: 'всем радам привет'
+2026-09-04 22:56:32 │ INFO     │ temiradam.wakeword.detector         │ ✅ Wake word 'всем радам' detected in: 'всем радам привет'
+2026-09-04 22:56:32 │ INFO     │ temiradam.core.assistant            │ Wake word detected!
+2026-09-04 22:56:32 │ ERROR    │ temiradam.core.assistant            │ Error in main loop
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/core/assistant.py", line 133, in run
+    self._run_once()
+    ~~~~~~~~~~~~~~^^
+  File "/home/estemis1/TemirAdam/core/assistant.py", line 165, in _run_once
+    self.state_machine.transition(AssistantState.VERIFYING)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/estemis1/TemirAdam/core/state.py", line 107, in transition
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Invalid transition: idle -> verifying. Allowed: ['error', 'listening']
+2026-09-04 22:56:32 │ INFO     │ temiradam.core.state                │ State RESET: idle -> IDLE
+2026-09-04 22:56:33 │ INFO     │ temiradam.core.assistant            │ Unloading heavy models (returning to IDLE)...
+2026-09-04 22:56:33 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen2.5:0.5b
+2026-09-04 22:56:33 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen2.5:0.5b
+2026-09-04 22:56:33 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:4b
+2026-09-04 22:56:33 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:4b
+2026-09-04 22:56:33 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:8b
+2026-09-04 22:56:33 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:8b
+2026-09-04 22:56:34 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:56:39 │ INFO     │ temiradam.core.assistant            │ Assistant stopped by user
+2026-09-04 22:56:39 │ INFO     │ temiradam.core.assistant            │ Unloading heavy models (returning to IDLE)...
+2026-09-04 22:56:39 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen2.5:0.5b
+2026-09-04 22:56:39 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen2.5:0.5b
+2026-09-04 22:56:39 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:4b
+2026-09-04 22:56:39 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:4b
+2026-09-04 22:56:39 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:8b
+2026-09-04 22:56:39 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:8b
+2026-09-04 22:57:40 │ INFO     │ temiradam                           │ Logging initialized: level=INFO, dir=logs
+2026-09-04 22:57:40 │ INFO     │ temiradam.main                      │ Initializing Темірадам Orchestrator...
+2026-09-04 22:57:40 │ INFO     │ temiradam.core.assistant            │ Starting Темірадам Assistant (3-tier LLM)...
+2026-09-04 22:57:40 │ INFO     │ temiradam.core.assistant            │ Models: EASY=qwen2.5:0.5b  MEDIUM=qwen3:4b  HARD=qwen3:8b
+2026-09-04 22:57:40 │ INFO     │ temiradam.core.lifecycle            │ Loading model: wakeword
+2026-09-04 22:57:40 │ INFO     │ temiradam.wakeword.detector         │ Loading wake word detector model (whisper-small)...
+2026-09-04 22:57:41 │ INFO     │ temiradam.wakeword.detector         │ Wake word detector model loaded successfully.
+2026-09-04 22:57:41 │ INFO     │ temiradam.core.lifecycle            │ Model loaded: wakeword (1.16s)
+2026-09-04 22:57:41 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:57:47 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: 'всем радам привет'
+2026-09-04 22:57:47 │ INFO     │ temiradam.wakeword.detector         │ ✅ Wake word 'всем радам' detected in: 'всем радам привет'
+2026-09-04 22:57:47 │ INFO     │ temiradam.core.assistant            │ Wake word detected!
+2026-09-04 22:57:47 │ INFO     │ temiradam.core.state                │ State: idle -> verifying
+2026-09-04 22:57:47 │ INFO     │ temiradam.core.lifecycle            │ Loading model: speaker_verifier
+2026-09-04 22:57:47 │ INFO     │ temiradam.speaker.verifier          │ Loading SpeakerVerifier model and saved profile...
+2026-09-04 22:57:47 │ INFO     │ temiradam.speaker.verifier          │ SpeakerVerifier successfully loaded.
+2026-09-04 22:57:47 │ INFO     │ temiradam.core.lifecycle            │ Model loaded: speaker_verifier (0.24s)
+2026-09-04 22:57:48 │ INFO     │ temiradam.speaker.verifier          │ Verification complete: Score = 0.6893, Authorized = False
+2026-09-04 22:57:48 │ INFO     │ temiradam.core.assistant            │ Speaker verification: False (confidence: 0.69)
+2026-09-04 22:57:48 │ INFO     │ temiradam.core.assistant            │ Unauthorized voice, ignoring.
+2026-09-04 22:57:48 │ INFO     │ temiradam.core.state                │ State: verifying -> idle
+2026-09-04 22:57:48 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:58:05 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: 'привет'
+2026-09-04 22:58:05 │ INFO     │ temiradam.wakeword.detector         │ ❌ Имя 'Темірадам' не названо, игнорирую фразу.
+2026-09-04 22:58:05 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:58:14 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: 'открою и спотифай'
+2026-09-04 22:58:14 │ INFO     │ temiradam.wakeword.detector         │ ❌ Имя 'Темірадам' не названо, игнорирую фразу.
+2026-09-04 22:58:14 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:58:20 │ INFO     │ temiradam.wakeword.detector         │ 🎤 Услышал: 'открой spotify'
+2026-09-04 22:58:20 │ INFO     │ temiradam.wakeword.detector         │ ❌ Имя 'Темірадам' не названо, игнорирую фразу.
+2026-09-04 22:58:20 │ INFO     │ temiradam.core.assistant            │ Listening for wake word 'Темірадам' (awaiting speech)...
+2026-09-04 22:58:32 │ INFO     │ temiradam.core.assistant            │ Assistant stopped by user
+2026-09-04 22:58:32 │ INFO     │ temiradam.core.assistant            │ Unloading heavy models (returning to IDLE)...
+2026-09-04 22:58:32 │ INFO     │ temiradam.core.lifecycle            │ Unloading model: speaker_verifier
+2026-09-04 22:58:32 │ INFO     │ temiradam.speaker.verifier          │ Unloading SpeakerVerifier...
+2026-09-04 22:58:32 │ INFO     │ temiradam.speaker.verifier          │ SpeakerVerifier unloaded.
+2026-09-04 22:58:32 │ INFO     │ temiradam.core.lifecycle            │ Model unloaded: speaker_verifier
+2026-09-04 22:58:32 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen2.5:0.5b
+2026-09-04 22:58:32 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen2.5:0.5b
+2026-09-04 22:58:32 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:4b
+2026-09-04 22:58:32 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:4b
+2026-09-04 22:58:32 │ INFO     │ temiradam.llm.ollama                │ Unloading model from Ollama: qwen3:8b
+2026-09-04 22:58:32 │ INFO     │ temiradam.llm.ollama                │ Model unloaded: qwen3:8b

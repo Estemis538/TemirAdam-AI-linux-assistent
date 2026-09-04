@@ -33,7 +33,7 @@ class AudioCapture:
         sample_rate: int = 16000,
         channels: int = 1,
         chunk_duration_ms: int = 30,
-        vad_aggressiveness: int = 2,
+        vad_aggressiveness: int = 3,
         device: str | int | None = None,
     ) -> None:
         self.sample_rate = sample_rate
@@ -61,10 +61,16 @@ class AudioCapture:
         return data.tobytes()
 
     def is_speech(self, frame: bytes) -> bool:
-        """Check if a frame contains speech using VAD."""
+        """Check if a frame contains speech using VAD and a simple noise gate."""
         try:
+            # Simple noise gate to filter out static
+            arr = np.frombuffer(frame, dtype=np.int16)
+            if np.max(np.abs(arr)) < 500:
+                return False
+                
             return self._vad.is_speech(frame, self.sample_rate)
-        except Exception:
+        except Exception as e:
+            # logger.warning(f"VAD error (frame len {len(frame)} bytes, expected {self.frame_size*2}): {e}")
             return False
 
     def stream_frames(self) -> Generator[tuple[bytes, bool], None, None]:

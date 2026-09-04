@@ -1,0 +1,86 @@
+2026-09-04 22:17:22 │ ERROR    │ temiradam.main                      │ Enrollment error
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/main.py", line 56, in run_enrollment
+    embedding_path = enrollment.enroll()
+  File "/home/estemis1/TemirAdam/speaker/enrollment.py", line 49, in enroll
+    audio = self._record_sample(i)
+  File "/home/estemis1/TemirAdam/speaker/enrollment.py", line 80, in _record_sample
+    capture = AudioCapture(self.audio_config)
+  File "/home/estemis1/TemirAdam/utils/audio.py", line 43, in __init__
+    self.frame_size = int(sample_rate * chunk_duration_ms / 1000)
+                          ~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for *: 'AudioConfig' and 'int'
+2026-09-04 22:28:34 │ ERROR    │ temiradam.wakeword.detector         │ Error recording audio: 'AudioCapture' object has no attribute 'read'
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/wakeword/detector.py", line 98, in listen
+    audio_data = audio_capture.read(16000 * 3)
+                 ^^^^^^^^^^^^^^^^^^
+AttributeError: 'AudioCapture' object has no attribute 'read'
+2026-09-04 22:28:34 │ ERROR    │ temiradam.wakeword.detector         │ Error recording audio: 'AudioCapture' object has no attribute 'read'
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/wakeword/detector.py", line 98, in listen
+    audio_data = audio_capture.read(16000 * 3)
+                 ^^^^^^^^^^^^^^^^^^
+AttributeError: 'AudioCapture' object has no attribute 'read'
+2026-09-04 22:28:34 │ ERROR    │ temiradam.wakeword.detector         │ Error recording audio: 'AudioCapture' object has no attribute 'read'
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/wakeword/detector.py", line 98, in listen
+    audio_data = audio_capture.read(16000 * 3)
+                 ^^^^^^^^^^^^^^^^^^
+AttributeError: 'AudioCapture' object has no attribute 'read'
+2026-09-04 22:28:38 │ ERROR    │ temiradam.wakeword.detector         │ Error recording audio: 'AudioCapture' object has no attribute 'read'
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/wakeword/detector.py", line 98, in listen
+    audio_data = audio_capture.read(16000 * 3)
+                 ^^^^^^^^^^^^^^^^^^
+AttributeError: 'AudioCapture' object has no attribute 'read'
+2026-09-04 22:28:39 │ ERROR    │ temiradam.wakeword.detector         │ Error recording audio: 'AudioCapture' object has no attribute 'read'
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/wakeword/detector.py", line 98, in listen
+    audio_data = audio_capture.read(16000 * 3)
+                 ^^^^^^^^^^^^^^^^^^
+AttributeError: 'AudioCapture' object has no attribute 'read'
+2026-09-04 22:28:42 │ ERROR    │ temiradam.wakeword.detector         │ Error recording audio: 'AudioCapture' object has no attribute 'read'
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/wakeword/detector.py", line 98, in listen
+    audio_data = audio_capture.read(16000 * 3)
+                 ^^^^^^^^^^^^^^^^^^
+AttributeError: 'AudioCapture' object has no attribute 'read'
+2026-09-04 22:28:43 │ ERROR    │ temiradam.wakeword.detector         │ Error recording audio: 'AudioCapture' object has no attribute 'read'
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/wakeword/detector.py", line 98, in listen
+    audio_data = audio_capture.read(16000 * 3)
+                 ^^^^^^^^^^^^^^^^^^
+AttributeError: 'AudioCapture' object has no attribute 'read'
+2026-09-04 22:28:43 │ ERROR    │ temiradam.wakeword.detector         │ Error recording audio: 'AudioCapture' object has no attribute 'read'
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/wakeword/detector.py", line 98, in listen
+    audio_data = audio_capture.read(16000 * 3)
+                 ^^^^^^^^^^^^^^^^^^
+AttributeError: 'AudioCapture' object has no attribute 'read'
+2026-09-04 22:47:10 │ ERROR    │ temiradam.core.assistant            │ Error in main loop
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/core/assistant.py", line 133, in run
+    self._run_once()
+    ~~~~~~~~~~~~~~^^
+  File "/home/estemis1/TemirAdam/core/assistant.py", line 165, in _run_once
+    self.state_machine.transition(AssistantState.VERIFYING)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/estemis1/TemirAdam/core/state.py", line 107, in transition
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Invalid transition: idle -> verifying. Allowed: ['listening', 'error']
+2026-09-04 22:56:32 │ ERROR    │ temiradam.core.assistant            │ Error in main loop
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/core/assistant.py", line 133, in run
+    self._run_once()
+    ~~~~~~~~~~~~~~^^
+  File "/home/estemis1/TemirAdam/core/assistant.py", line 165, in _run_once
+    self.state_machine.transition(AssistantState.VERIFYING)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/estemis1/TemirAdam/core/state.py", line 107, in transition
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Invalid transition: idle -> verifying. Allowed: ['error', 'listening']

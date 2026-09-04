@@ -77,23 +77,16 @@ class SpeakerEnrollment:
         """
         Record a single audio sample from the microphone.
         """
-        capture = AudioCapture(self.audio_config)
+        capture = AudioCapture(
+            sample_rate=self.audio_config.sample_rate,
+            channels=self.audio_config.channels,
+            chunk_duration_ms=self.audio_config.chunk_duration_ms,
+            device=self.audio_config.device,
+        )
         logger.info(f"Please speak now (Sample {index + 1})...")
-        try:
-            # Assumes AudioCapture has a record method that blocks for the given duration
-            audio_data = capture.record(duration=self.sample_duration)
-        except AttributeError:
-            logger.warning("AudioCapture.record not found, using manual read loop.")
-            # Fallback if record is not implemented
-            capture.start()
-            frames = []
-            start_time = time.time()
-            while time.time() - start_time < self.sample_duration:
-                chunk = capture.read()
-                if chunk is not None:
-                    frames.append(chunk)
-            capture.stop()
-            audio_data = np.concatenate(frames) if frames else np.array([], dtype=np.int16)
+        
+        # Use the correct method from AudioCapture
+        audio_data = capture.record_seconds(duration=self.sample_duration)
             
         logger.info("Recording finished.")
         return audio_data

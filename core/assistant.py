@@ -152,7 +152,7 @@ class AssistantOrchestrator:
 
         # 1. IDLE: Wait for wake word
         self.state_machine.transition(AssistantState.IDLE)
-        logger.debug("Waiting for wake word...")
+        logger.info("Listening for wake word 'Темірадам' (awaiting speech)...")
 
         detected, wake_audio = self.wakeword.listen(self.audio)
         if not detected or wake_audio is None:
@@ -160,7 +160,7 @@ class AssistantOrchestrator:
 
         logger.info("Wake word detected!")
 
-        # 2. VERIFYING: Check if it's the owner's voice
+        # 3. VERIFYING: Check if it's the owner's voice
         if self.config.speaker_verification.enabled:
             self.state_machine.transition(AssistantState.VERIFYING)
             self.lifecycle.ensure_loaded(self.speaker.name)
@@ -175,38 +175,38 @@ class AssistantOrchestrator:
                 self.state_machine.transition(AssistantState.IDLE)
                 return
 
-        # 3. LISTENING: Record command
-        self.state_machine.transition(AssistantState.LISTENING)
-        logger.info("Listening for command...")
-
-        command_audio = self.audio.record_until_silence(
-            silence_threshold_ms=self.config.audio.silence_threshold_ms,
-            max_seconds=self.config.audio.max_listen_seconds,
-        )
-
-        if len(command_audio) < self.config.audio.sample_rate * 0.5:
-            logger.info("Command too short, ignoring.")
-            self.state_machine.transition(AssistantState.IDLE)
-            return
-
         # 4. THINKING: STT + Intent parsing
         self.state_machine.transition(AssistantState.THINKING)
 
         # 4a. STT
         self.lifecycle.ensure_loaded(self.stt.name)
-        transcription = self.stt.transcribe(command_audio)
+        transcription = self.stt.transcribe(wake_audio)
         logger.info(
             "STT: [%s] '%s' (conf: %.2f)",
             transcription.language, transcription.text, transcription.confidence,
         )
 
-        if not transcription.text.strip():
+        text = transcription.text.strip()
+        if not text:
+            self.state_machine.transition(AssistantState.IDLE)
+            return
+            
+        # Clean wake word from the start so fast matcher can work
+        lower_text = text.lower()
+        for wake in self.wakeword.WAKE_WORDS:
+            if lower_text.startswith(wake):
+                text = text[len(wake):].strip()
+                # Remove any punctuation that might follow the wake word (e.g. "Темірадам, пауза")
+                text = text.lstrip(" ,.!-?")
+                break
+
+        if not text:
             self.state_machine.transition(AssistantState.IDLE)
             return
 
         # 4b. Intent Classification (Fast Matcher → Router → Tiered LLM)
         intent = self.intent_classifier.classify(
-            transcription.text,
+            text,
             language=transcription.language,
         )
 
