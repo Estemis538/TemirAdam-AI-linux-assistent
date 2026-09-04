@@ -1,0 +1,21 @@
+# Темірадам — Dependencies
+# Core
+numpy>=1.24.0
+sounddevice>=0.4.6
+webrtcvad>=2.0.10
+httpx>=0.25.0
+
+# STT (Speech-to-Text)
+faster-whisper>=1.0.0
+
+# Speaker Verification
+resemblyzer>=0.1.3
+
+# TTS (Text-to-Speech)
+piper-tts>=1.2.0
+
+# LLM (via Ollama HTTP API — no extra package needed)
+# ollama is accessed via httpx
+
+# Utilities
+tomli-w>=1.0.0

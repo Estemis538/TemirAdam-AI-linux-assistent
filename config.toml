@@ -1,0 +1,193 @@
+# Темірадам — Fully Local Voice Assistant for Linux
+#
+# Core configuration
+# All settings for wake word, speaker verification, STT, LLM, TTS, tools
+
+[assistant]
+name = "Темірадам"
+wake_word = "темірадам"
+wake_word_variants = ["темір адам", "темирадам", "темир адам"]
+language = "ru"
+
+[languages]
+default = "ru"
+supported = ["ru", "kk"]
+
+[audio]
+sample_rate = 16000
+channels = 1
+chunk_duration_ms = 30       # VAD frame duration
+silence_threshold_ms = 800   # silence before end-of-speech
+max_listen_seconds = 10      # max recording after wake word
+device = ""                  # empty = default device
+
+[wakeword]
+enabled = true
+# Strategy: "whisper_kws" (whisper tiny keyword spotting) or "openwakeword"
+strategy = "whisper_kws"
+whisper_model = "tiny"
+vad_aggressiveness = 2       # webrtcvad: 0-3 (higher = more aggressive)
+min_speech_ms = 300           # minimum speech duration to trigger whisper
+
+[speaker_verification]
+enabled = true
+threshold = 0.70
+profile_dir = "data/speaker_profile"
+min_samples = 3
+max_samples = 5
+
+[stt]
+enabled = true
+engine = "faster_whisper"
+model = "small"
+device = "cuda"              # "cuda" or "cpu"
+compute_type = "float16"     # "float16", "int8_float16", "int8"
+beam_size = 5
+
+[llm]
+provider = "ollama"
+base_url = "http://localhost:11434"
+temperature = 0.1
+max_tokens = 512
+timeout_seconds = 30
+keep_alive = "0"             # unload immediately after use
+
+[llm.easy]
+enabled = true
+model = "qwen2.5:0.5b"
+max_memory_gb = 1.0
+
+[llm.medium]
+enabled = true
+model = "qwen3:4b"
+max_memory_gb = 3.0
+
+[llm.hard]
+enabled = true
+model = "qwen3:8b"
+max_memory_gb = 7.0
+
+[tts]
+enabled = true
+engine = "piper"
+voice_ru = "ru_RU-denis-medium"
+voice_kk = "kk_KZ-issai-high"
+output_device = ""           # empty = default
+speed = 1.0
+
+[quickshell]
+enabled = true
+socket_path = "/run/user/1000/quickshell"
+fallback_notify = true       # use notify-send if quickshell unavailable
+
+[logging]
+level = "INFO"               # DEBUG, INFO, WARNING, ERROR
+log_dir = "logs"
+max_bytes = 10485760         # 10MB
+backup_count = 3
+
+# ─── Tool Definitions ───────────────────────────────────────────
+
+[tools.open_app]
+enabled = true
+description = "Open an application"
+permission = "safe"
+confirmation = false
+allowed_apps = [
+    { name = "firefox", command = "firefox" },
+    { name = "spotify", command = "spotify" },
+    { name = "kitty", command = "kitty" },
+    { name = "code", command = "code" },
+    { name = "nautilus", command = "nautilus" },
+    { name = "telegram", command = "telegram-desktop" },
+]
+
+[tools.close_app]
+enabled = true
+description = "Close an application"
+permission = "safe"
+confirmation = false
+
+[tools.spotify_play]
+enabled = true
+description = "Play a track/artist/album on Spotify"
+permission = "safe"
+confirmation = false
+
+[tools.spotify_pause]
+enabled = true
+description = "Pause Spotify playback"
+permission = "safe"
+confirmation = false
+
+[tools.spotify_next]
+enabled = true
+description = "Skip to next track in Spotify"
+permission = "safe"
+confirmation = false
+
+[tools.spotify_previous]
+enabled = true
+description = "Go to previous track in Spotify"
+permission = "safe"
+confirmation = false
+
+[tools.youtube_search]
+enabled = true
+description = "Search for a video on YouTube"
+permission = "safe"
+confirmation = false
+
+[tools.set_volume]
+enabled = true
+description = "Set system volume to a specific percentage"
+permission = "safe"
+confirmation = false
+
+[tools.get_volume]
+enabled = true
+description = "Get current system volume"
+permission = "safe"
+confirmation = false
+
+[tools.mute]
+enabled = true
+description = "Mute system audio"
+permission = "safe"
+confirmation = false
+
+[tools.unmute]
+enabled = true
+description = "Unmute system audio"
+permission = "safe"
+confirmation = false
+
+[tools.get_time]
+enabled = true
+description = "Get current time"
+permission = "safe"
+confirmation = false
+
+[tools.get_date]
+enabled = true
+description = "Get current date"
+permission = "safe"
+confirmation = false
+
+[tools.open_url]
+enabled = true
+description = "Open a URL in the default browser"
+permission = "safe"
+confirmation = false
+
+[tools.shutdown]
+enabled = false
+description = "Shut down the computer"
+permission = "dangerous"
+confirmation = true
+
+[tools.reboot]
+enabled = false
+description = "Reboot the computer"
+permission = "dangerous"
+confirmation = true
