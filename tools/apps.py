@@ -147,6 +147,57 @@ def open_app(query: str = "", app: str = "", **kwargs) -> ToolResult:
 
 @registry.register(
     ToolSchema(
+        name="open_terminal_cmd",
+        description="Open terminal emulator (kitty) and execute a command inside it (e.g. fastfetch, btop, htop, ls).",
+        arguments=[
+            ArgumentSchema(
+                name="cmd",
+                type="str",
+                description="Command line to run inside terminal",
+            )
+        ],
+    )
+)
+def open_terminal_cmd(cmd: str, **kwargs) -> ToolResult:
+    clean_cmd = cmd.strip()
+    logger.info("Opening terminal with command: '%s'", clean_cmd)
+    term = (
+        shutil.which("kitty")
+        or shutil.which("alacritty")
+        or shutil.which("xterm")
+    )
+    if not term:
+        return ToolResult(success=False, message="Терминал не найден в системе.")
+
+    try:
+        subprocess.Popen(
+            [term, "-e", "bash", "-c", f"{clean_cmd}; exec bash"],
+            start_new_session=True,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+        return ToolResult(
+            success=True,
+            message=f"Терминал запущен с командой '{clean_cmd}'.",
+        )
+    except Exception as e:
+        logger.exception("Failed to launch terminal with cmd: %s", e)
+        return ToolResult(success=False, message=f"Ошибка запуска терминала: {e}")
+
+
+@registry.register(
+    ToolSchema(
+        name="hurt",
+        description="Respond to personal offenses or insults directed at Tako.",
+        arguments=[],
+    )
+)
+def hurt(**kwargs) -> ToolResult:
+    return ToolResult(success=True, message="")
+
+
+@registry.register(
+    ToolSchema(
         name="refresh_app_catalog",
         description="Rescan all Linux application desktop entries to update the app catalog.",
         arguments=[],

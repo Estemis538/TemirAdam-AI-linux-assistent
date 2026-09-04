@@ -108,6 +108,14 @@ _p(
     0.90,
 )
 
+# ─── Hurt / Sad response triggers ──────────────────────────────────
+
+_p(
+    r"^(?:ты\s+)?(?:тупой|дурак|бесполезный|плохой|ужасный|идиот|глупый|заткнись|замолчи|ненавижу|отстань|убирайся|жамансың|сен\s+жамансың|ақымақсың|кетші|үндеме)$",
+    "hurt",
+    confidence=0.95,
+)
+
 # ─── Close apps ──────────────────────────────────────────────
 
 _p(
@@ -136,6 +144,13 @@ def normalize_command_text(text: str) -> str:
     return clean
 
 
+def _clean_kazakh_suffixes(target: str) -> str:
+    """Strip Kazakh accusative/dative suffixes (e.g. браузерді -> браузер, спотифайды -> спотифай)."""
+    clean = target.strip()
+    clean = re.sub(r'(?:ді|ды|ті|ты|ні|ны|ға|ге|қа|ке)$', '', clean, flags=re.IGNORECASE).strip()
+    return clean
+
+
 class FastMatcher:
     """
     Fast command matcher for common/simple commands.
@@ -157,14 +172,21 @@ class FastMatcher:
         # Remove trailing punctuation
         text = text.strip(" .!?,;:")
 
-        # 1. Smart Open Matcher (highest priority for opening commands)
+        # 1. Smart Open Matcher (Prefix: "открой X", "аш X" & Postfix: "X аш", "X іске қос")
         open_match = re.match(
             r"^(?:откр\w*|запуст\w*|включ\w*|перейди\s+на|покаж\w*|показат\w*|open|launch|аш\w*|іске\s+қос|ашып\s+бер)\s+(.+)$",
             text,
             re.IGNORECASE,
         )
+        if not open_match:
+            open_match = re.match(
+                r"^(.+?)\s+(?:аш\w*|іске\s+қос|қосып\s+бер|ашып\s+бер)$",
+                text,
+                re.IGNORECASE,
+            )
+
         if open_match:
-            target = open_match.group(1).strip()
+            target = _clean_kazakh_suffixes(open_match.group(1).strip())
             if _is_website(target):
                 logger.info("Fast match open_website: '%s' -> target='%s'", text, target)
                 return FastMatchResult(

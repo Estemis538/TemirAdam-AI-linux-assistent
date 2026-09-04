@@ -293,6 +293,8 @@ class AssistantOrchestrator:
                 msg = get_response("muted", intent.language)
             elif tool_call.tool == "unmute":
                 msg = get_response("unmuted", intent.language)
+            elif tool_call.tool == "hurt":
+                msg = get_response("hurt", intent.language)
             elif tool_call.tool in ("get_time", "get_date"):
                 msg = result.message
             else:

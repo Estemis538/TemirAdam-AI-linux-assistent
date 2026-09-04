@@ -91,15 +91,16 @@ class WakeWordDetector:
         audio_float = audio_to_float32(audio_data)
         
         try:
-            initial_prompt = (
+            bilingual_initial_prompt = (
                 "Тако, открой браузер, spotify, firefox, ютуб, телеграм, код, терминал, "
-                "запусти, включи, громкость, дата, время, дата."
+                "браузерді аш, сағат қанша, дыбысты өшір, музыканы қос, іске қос, өшір, "
+                "бүгін қандай күн, ойнат, тоқта."
             )
             segments, info = self._model.transcribe(
                 audio_float,
                 beam_size=5,
-                language="ru",
-                initial_prompt=initial_prompt,
+                language=None,  # Auto-detect Kazakh (kk) and Russian (ru)
+                initial_prompt=bilingual_initial_prompt,
                 no_speech_threshold=0.6,
                 log_prob_threshold=-1.0,
                 condition_on_previous_text=False,
