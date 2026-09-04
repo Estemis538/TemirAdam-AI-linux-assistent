@@ -60,7 +60,7 @@ class AssistantOrchestrator:
         )
 
         # Initialize ML models & register them for lifecycle management
-        self.wakeword = WakeWordDetector(config.wakeword)
+        self.wakeword = WakeWordDetector(config.wakeword, config.assistant)
         self.speaker = SpeakerVerifier(config.speaker_verification, config.audio)
         self.stt = STTEngine(config.stt)
         self.tts = TTSEngine(config.tts)
@@ -69,6 +69,10 @@ class AssistantOrchestrator:
         self.lifecycle.register(self.speaker)
         self.lifecycle.register(self.stt)
         self.lifecycle.register(self.tts)
+
+        # Initialize app catalog & discovery
+        from tools.apps import init_app_discovery
+        init_app_discovery(config.raw_dict if hasattr(config, 'raw_dict') else {})
 
         # Initialize tools & NLP
         self.tool_validator = ToolValidator(config.tools, registry)
@@ -95,8 +99,8 @@ class AssistantOrchestrator:
     def _unload_heavy_models(self) -> None:
         """Unload heavy models to free VRAM/RAM when going back to IDLE."""
         logger.info("Unloading heavy models (returning to IDLE)...")
-        # Keep wakeword loaded as we need it in IDLE
-        self.lifecycle.unload_all(exclude={self.wakeword.name})
+        # Keep wakeword + speaker loaded for speed (they're small)
+        self.lifecycle.unload_all(exclude={self.wakeword.name, self.speaker.name})
 
         # Also unload any LLM tier models from Ollama if keep_alive == "0"
         if self.config.llm.keep_alive == "0":
@@ -152,20 +156,20 @@ class AssistantOrchestrator:
 
         # 1. IDLE: Wait for wake word
         self.state_machine.transition(AssistantState.IDLE)
-        logger.info("Listening for wake word 'Темірадам' (awaiting speech)...")
+        logger.info("Listening for wake word '%s' (awaiting speech)...", self.config.assistant.name)
 
-        detected, wake_audio = self.wakeword.listen(self.audio)
-        if not detected or wake_audio is None:
+        result = self.wakeword.listen(self.audio)
+        if not result.detected or result.audio is None:
             return
 
         logger.info("Wake word detected!")
 
-        # 3. VERIFYING: Check if it's the owner's voice
+        # 2. VERIFYING: Check if it's the owner's voice
         if self.config.speaker_verification.enabled:
             self.state_machine.transition(AssistantState.VERIFYING)
             self.lifecycle.ensure_loaded(self.speaker.name)
 
-            is_owner, confidence = self.speaker.verify(wake_audio)
+            is_owner, confidence = self.speaker.verify(result.audio)
             logger.info(
                 "Speaker verification: %s (confidence: %.2f)", is_owner, confidence,
             )
@@ -175,39 +179,37 @@ class AssistantOrchestrator:
                 self.state_machine.transition(AssistantState.IDLE)
                 return
 
-        # 4. THINKING: STT + Intent parsing
+        # 3. THINKING: Use transcription from wakeword (no separate STT needed!)
         self.state_machine.transition(AssistantState.THINKING)
 
-        # 4a. STT
-        self.lifecycle.ensure_loaded(self.stt.name)
-        transcription = self.stt.transcribe(wake_audio)
-        logger.info(
-            "STT: [%s] '%s' (conf: %.2f)",
-            transcription.language, transcription.text, transcription.confidence,
-        )
+        text = result.transcription.strip()
+        logger.info("Command text: '%s'", text)
 
-        text = transcription.text.strip()
         if not text:
             self.state_machine.transition(AssistantState.IDLE)
             return
             
         # Clean wake word from the start so fast matcher can work
+        # Sort by length descending so "тако" is tried before "так"
         lower_text = text.lower()
-        for wake in self.wakeword.WAKE_WORDS:
+        sorted_wakes = sorted(self.wakeword.WAKE_WORDS, key=len, reverse=True)
+        for wake in sorted_wakes:
             if lower_text.startswith(wake):
                 text = text[len(wake):].strip()
-                # Remove any punctuation that might follow the wake word (e.g. "Темірадам, пауза")
-                text = text.lstrip(" ,.!-?")
+                text = text.lstrip(" ,.!-?:;")
                 break
 
         if not text:
-            self.state_machine.transition(AssistantState.IDLE)
+            # User only said the wake word with nothing else — treat as greeting
+            msg = get_response("greeting", "ru")
+            self._speak_and_idle(msg, "ru")
             return
 
-        # 4b. Intent Classification (Fast Matcher → Router → Tiered LLM)
+        # 4. Intent Classification (Fast Matcher → Router → Tiered LLM)
+        language = "ru"
         intent = self.intent_classifier.classify(
             text,
-            language=transcription.language,
+            language=language,
         )
 
         # Update UI with tier info if an LLM was used
@@ -265,9 +267,7 @@ class AssistantOrchestrator:
         logger.info("Executing tool: %s(%s)", tool_call.tool, tool_call.arguments)
 
         try:
-            result: ToolResult = asyncio.run(
-                self.tool_executor.execute(tool_call, self.config.tools)
-            )
+            result: ToolResult = self.tool_executor.execute(tool_call, self.config.tools)
         except Exception:
             logger.exception("Tool execution crashed")
             result = ToolResult(
@@ -278,6 +278,8 @@ class AssistantOrchestrator:
         if result.success:
             if tool_call.tool == "open_app":
                 msg = get_response("launching", intent.language)
+            elif tool_call.tool in ("open_website", "open_url"):
+                msg = get_response("launching_site", intent.language)
             elif tool_call.tool == "spotify_play":
                 msg = get_response("playing", intent.language)
             elif tool_call.tool == "youtube_search":

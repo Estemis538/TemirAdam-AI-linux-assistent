@@ -4,9 +4,9 @@
 # All settings for wake word, speaker verification, STT, LLM, TTS, tools
 
 [assistant]
-name = "Темірадам"
-wake_word = "темірадам"
-wake_word_variants = ["темір адам", "темирадам", "темир адам"]
+name = "Тако"
+wake_word = "тако"
+wake_word_variants = ["тако", "taka", "tako", "так", "tak", "атако", "таком", "така", "аккороль", "атака"]
 language = "ru"
 
 [languages]
@@ -23,15 +23,15 @@ device = ""                  # empty = default device
 
 [wakeword]
 enabled = true
-# Strategy: "whisper_kws" (whisper tiny keyword spotting) or "openwakeword"
+# Strategy: "whisper_kws" (whisper keyword spotting) or "openwakeword"
 strategy = "whisper_kws"
-whisper_model = "tiny"
+whisper_model = "small"
 vad_aggressiveness = 2       # webrtcvad: 0-3 (higher = more aggressive)
 min_speech_ms = 300           # minimum speech duration to trigger whisper
 
 [speaker_verification]
 enabled = true
-threshold = 0.70
+threshold = 0.60
 profile_dir = "data/speaker_profile"
 min_samples = 3
 max_samples = 5
@@ -40,8 +40,8 @@ max_samples = 5
 enabled = true
 engine = "faster_whisper"
 model = "small"
-device = "cuda"              # "cuda" or "cpu"
-compute_type = "float16"     # "float16", "int8_float16", "int8"
+device = "cpu"              # "cuda" or "cpu"
+compute_type = "int8"     # "float16", "int8_float16", "int8"
 beam_size = 5
 
 [llm]
@@ -50,7 +50,7 @@ base_url = "http://localhost:11434"
 temperature = 0.1
 max_tokens = 512
 timeout_seconds = 30
-keep_alive = "0"             # unload immediately after use
+keep_alive = "10m"           # keep model in RAM for 10 minutes
 
 [llm.easy]
 enabled = true
@@ -59,18 +59,18 @@ max_memory_gb = 1.0
 
 [llm.medium]
 enabled = true
-model = "qwen3:4b"
-max_memory_gb = 3.0
+model = "qwen2.5:0.5b"
+max_memory_gb = 1.0
 
 [llm.hard]
 enabled = true
-model = "qwen3:8b"
-max_memory_gb = 7.0
+model = "qwen2.5:0.5b"
+max_memory_gb = 1.0
 
 [tts]
 enabled = true
 engine = "piper"
-voice_ru = "ru_RU-denis-medium"
+voice_ru = "voices/ru_RU-denis-medium.onnx"
 voice_kk = "kk_KZ-issai-high"
 output_device = ""           # empty = default
 speed = 1.0
@@ -86,21 +86,47 @@ log_dir = "logs"
 max_bytes = 10485760         # 10MB
 backup_count = 3
 
+[app_discovery]
+enabled = true
+cache_file = "data/app_catalog.json"
+auto_refresh = true
+desktop_dirs = [
+    "/usr/share/applications",
+    "/usr/local/share/applications",
+    "~/.local/share/applications",
+    "/var/lib/flatpak/exports/share/applications",
+    "~/.local/share/flatpak/exports/share/applications"
+]
+
+[defaults]
+browser = "firefox"
+terminal = "kitty"
+music = "spotify"
+editor = "code"
+
+[app_aliases]
+terminal = "kitty"
+"терминал" = "kitty"
+"консоль" = "kitty"
+browser = "firefox"
+"браузер" = "firefox"
+"шолғыш" = "firefox"
+music = "spotify"
+"музыка" = "spotify"
+"музыку" = "spotify"
+"спотифай" = "spotify"
+"дискорд" = "discord"
+"стим" = "steam"
+"нвидиа" = "nvidia-settings"
+"телеграм" = "telegram-desktop"
+
 # ─── Tool Definitions ───────────────────────────────────────────
 
 [tools.open_app]
 enabled = true
-description = "Open an application"
+description = "Open an installed application automatically via Linux desktop entry resolution"
 permission = "safe"
 confirmation = false
-allowed_apps = [
-    { name = "firefox", command = "firefox" },
-    { name = "spotify", command = "spotify" },
-    { name = "kitty", command = "kitty" },
-    { name = "code", command = "code" },
-    { name = "nautilus", command = "nautilus" },
-    { name = "telegram", command = "telegram-desktop" },
-]
 
 [tools.close_app]
 enabled = true

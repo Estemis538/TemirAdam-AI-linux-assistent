@@ -63,11 +63,6 @@ class AudioCapture:
     def is_speech(self, frame: bytes) -> bool:
         """Check if a frame contains speech using VAD and a simple noise gate."""
         try:
-            # Simple noise gate to filter out static
-            arr = np.frombuffer(frame, dtype=np.int16)
-            if np.max(np.abs(arr)) < 500:
-                return False
-                
             return self._vad.is_speech(frame, self.sample_rate)
         except Exception as e:
             # logger.warning(f"VAD error (frame len {len(frame)} bytes, expected {self.frame_size*2}): {e}")
@@ -104,8 +99,8 @@ class AudioCapture:
         min_speech_frames = int(min_speech_ms / self.chunk_duration_ms)
         start_time = time.monotonic()
 
-        # Keep a small ring buffer of recent frames for pre-roll
-        pre_roll_count = 10
+        # Keep a ring buffer of recent frames for pre-roll (30 frames = 900ms pre-speech audio)
+        pre_roll_count = 30
         ring_buffer: collections.deque[bytes] = collections.deque(
             maxlen=pre_roll_count
         )

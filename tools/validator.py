@@ -1,13 +1,11 @@
 from __future__ import annotations
 import logging
+import shutil
 from typing import Any
 
 from tools.schemas import ToolCall
 from tools.registry import ToolRegistry
-
-"""
-Tool validator for whitelist enforcement.
-"""
+from tools.apps import _resolve_app
 
 logger = logging.getLogger("temiradam.tools.validator")
 
@@ -45,12 +43,9 @@ class ToolValidator:
                 return False, f"Missing required argument '{arg.name}' for tool '{tool_call.tool}'."
 
         if tool_call.tool == 'open_app':
-            app_arg = tool_call.arguments.get('app')
-            allowed_apps = getattr(self.config.get('open_app'), 'allowed_apps', []) if self.config.get('open_app') else []
-            if isinstance(allowed_apps, dict):
-                allowed_apps = list(allowed_apps.keys())
-            if app_arg not in allowed_apps and app_arg not in getattr(self.config.get('open_app'), 'aliases', {}):
-                # Simple check for now, can be improved based on exact config structure
-                return False, f"App '{app_arg}' is not in the allowed applications list."
+            query_arg = str(tool_call.arguments.get('query', '') or tool_call.arguments.get('app', '')).strip()
+            if not query_arg:
+                return False, "Application query cannot be empty."
 
         return True, ""
+

@@ -1,4 +1,6 @@
 from __future__ import annotations
+import asyncio
+import inspect
 import logging
 from typing import Any
 
@@ -17,7 +19,7 @@ class ToolExecutor:
         self.validator = validator
         self.registry = registry
 
-    async def execute(self, tool_call: ToolCall, config: dict[str, Any]) -> ToolResult:
+    def execute(self, tool_call: ToolCall, config: dict[str, Any]) -> ToolResult:
         logger.info(f"Executing tool: {tool_call.tool} with args: {tool_call.arguments}")
         
         is_valid, error_msg = self.validator.validate(tool_call)
@@ -26,24 +28,22 @@ class ToolExecutor:
             return ToolResult(success=False, message=error_msg)
 
         tool_info = self.registry.get(tool_call.tool) # type: ignore
+        if not tool_info:
+            return ToolResult(success=False, message=f"Tool {tool_call.tool} not registered.")
         schema, func = tool_info # type: ignore
 
         if schema.confirmation:
             logger.info(f"Tool {tool_call.tool} requires confirmation.")
-            # In a real scenario, this would block or request user input.
-            # Assuming it's handled or we just return a message indicating confirmation is needed.
             return ToolResult(success=False, message="User confirmation required.")
 
         try:
-            # Checking if the function expects the config parameter
-            import inspect
             sig = inspect.signature(func)
             kwargs = dict(tool_call.arguments)
             if 'config' in sig.parameters:
                 kwargs['config'] = config
 
             if inspect.iscoroutinefunction(func):
-                result = await func(**kwargs)
+                result = asyncio.run(func(**kwargs))
             else:
                 result = func(**kwargs)
                 
@@ -52,3 +52,4 @@ class ToolExecutor:
         except Exception as e:
             logger.exception(f"Error executing tool {tool_call.tool}: {e}")
             return ToolResult(success=False, message=f"Execution error: {str(e)}")
+

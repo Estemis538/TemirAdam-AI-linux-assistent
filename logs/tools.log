@@ -1,0 +1,73 @@
+2026-09-05 01:50:23 │ INFO     │ temiradam.tools.executor            │ Executing tool: open_app with args: {'app': 'с spotify'}
+2026-09-05 01:50:23 │ INFO     │ temiradam.tools.apps                │ Opening app: 'с spotify' -> command: 'spotify'
+2026-09-05 01:50:23 │ INFO     │ temiradam.tools.executor            │ Tool open_app executed successfully.
+2026-09-05 01:50:36 │ WARNING  │ temiradam.tools.validator           │ App binary not found for 'тут' -> 'тут'
+2026-09-05 01:56:20 │ INFO     │ temiradam.tools.executor            │ Executing tool: open_app with args: {'app': 'браузер'}
+2026-09-05 01:56:20 │ INFO     │ temiradam.tools.apps                │ Opening app: 'браузер' -> command: 'firefox'
+2026-09-05 01:56:20 │ INFO     │ temiradam.tools.executor            │ Tool open_app executed successfully.
+2026-09-05 01:57:46 │ INFO     │ temiradam.tools.executor            │ Executing tool: open_app with args: {'app': 'браузер'}
+2026-09-05 01:57:46 │ INFO     │ temiradam.tools.apps                │ Opening app: 'браузер' -> command: 'firefox'
+2026-09-05 01:57:46 │ INFO     │ temiradam.tools.executor            │ Tool open_app executed successfully.
+2026-09-05 01:58:03 │ INFO     │ temiradam.tools.executor            │ Executing tool: open_website with args: {'url': 'ютуб.'}
+2026-09-05 01:58:03 │ INFO     │ temiradam.tools.apps                │ Opening website: 'ютуб.' -> 'https://youtube.com'
+2026-09-05 01:58:03 │ INFO     │ temiradam.tools.executor            │ Tool open_website executed successfully.
+2026-09-05 02:06:41 │ INFO     │ temiradam.tools.executor            │ Executing tool: open_app with args: {'app': 'терминал'}
+2026-09-05 02:06:41 │ INFO     │ temiradam.tools.apps                │ Opening app: 'терминал' -> command: 'kitty'
+2026-09-05 02:06:41 │ INFO     │ temiradam.tools.executor            │ Tool open_app executed successfully.
+2026-09-05 02:06:53 │ INFO     │ temiradam.tools.executor            │ Executing tool: open_app with args: {'app': 'терминал'}
+2026-09-05 02:06:53 │ INFO     │ temiradam.tools.apps                │ Opening app: 'терминал' -> command: 'kitty'
+2026-09-05 02:06:53 │ INFO     │ temiradam.tools.executor            │ Tool open_app executed successfully.
+2026-09-05 02:07:05 │ INFO     │ temiradam.tools.executor            │ Executing tool: open_app with args: {'app': '3 телеграм, терминал'}
+2026-09-05 02:07:05 │ INFO     │ temiradam.tools.apps                │ Opening app: '3 телеграм, терминал' -> command: 'kitty'
+2026-09-05 02:07:05 │ INFO     │ temiradam.tools.executor            │ Tool open_app executed successfully.
+2026-09-05 02:08:17 │ WARNING  │ temiradam.tools.validator           │ App binary not found for 'инвидия' -> 'инвидия'
+2026-09-05 02:08:28 │ WARNING  │ temiradam.tools.validator           │ App binary not found for 'видео' -> 'видео'
+2026-09-05 02:08:39 │ WARNING  │ temiradam.tools.validator           │ App binary not found for 'файловой менеджер' -> 'файловой менеджер'
+2026-09-05 02:08:46 │ INFO     │ temiradam.tools.executor            │ Executing tool: open_app with args: {'app': 'dolphin'}
+2026-09-05 02:08:46 │ INFO     │ temiradam.tools.apps                │ Opening app: 'dolphin' -> command: 'dolphin'
+2026-09-05 02:08:46 │ INFO     │ temiradam.tools.executor            │ Tool open_app executed successfully.
+2026-09-05 02:11:10 │ INFO     │ temiradam.tools.executor            │ Executing tool: open_app with args: {'app': 'терминал и напиши туда hello world'}
+2026-09-05 02:11:10 │ INFO     │ temiradam.tools.apps                │ Opening app: 'терминал и напиши туда hello world' -> command: 'kitty'
+2026-09-05 02:11:10 │ INFO     │ temiradam.tools.executor            │ Tool open_app executed successfully.
+2026-09-05 02:18:15 │ INFO     │ temiradam.tools.app_catalog         │ [APP CATALOG] Loaded 118 applications from cache.
+2026-09-05 02:18:30 │ INFO     │ temiradam.tools.executor            │ Executing tool: open_app with args: {'query': 'камеру'}
+2026-09-05 02:18:30 │ INFO     │ temiradam.tools.apps                │ Tool open_app called with query: 'камеру'
+2026-09-05 02:18:30 │ INFO     │ temiradam.tools.app_resolver        │ [APP RESOLVER] Query: 'камеру' (normalized: 'камеру')
+2026-09-05 02:18:30 │ INFO     │ temiradam.tools.app_resolver        │ [APP RESOLVER] No candidate met threshold 0.55
+2026-09-05 02:18:30 │ INFO     │ temiradam.tools.executor            │ Tool open_app executed successfully.
+2026-09-05 02:20:24 │ INFO     │ temiradam.tools.executor            │ Executing tool: open_app with args: {'query': 'асус стиль'}
+2026-09-05 02:20:24 │ INFO     │ temiradam.tools.apps                │ Tool open_app called with query: 'асус стиль'
+2026-09-05 02:20:24 │ INFO     │ temiradam.tools.app_resolver        │ [APP RESOLVER] Query: 'асус стиль' (normalized: 'асус стиль')
+2026-09-05 02:20:24 │ INFO     │ temiradam.tools.app_resolver        │ [APP RESOLVER] No candidate met threshold 0.55
+2026-09-05 02:20:24 │ INFO     │ temiradam.tools.executor            │ Tool open_app executed successfully.
+2026-09-05 02:20:43 │ INFO     │ temiradam.tools.executor            │ Executing tool: open_app with args: {'query': 'положение asus ktl'}
+2026-09-05 02:20:43 │ INFO     │ temiradam.tools.apps                │ Tool open_app called with query: 'положение asus ktl'
+2026-09-05 02:20:43 │ INFO     │ temiradam.tools.app_resolver        │ [APP RESOLVER] Query: 'положение asus ktl' (normalized: 'положение asus ktl')
+2026-09-05 02:20:43 │ INFO     │ temiradam.tools.app_resolver        │ [APP RESOLVER] No candidate met threshold 0.55
+2026-09-05 02:20:43 │ INFO     │ temiradam.tools.executor            │ Tool open_app executed successfully.
+2026-09-05 02:21:04 │ INFO     │ temiradam.tools.executor            │ Executing tool: open_app with args: {'query': 'хромин'}
+2026-09-05 02:21:04 │ INFO     │ temiradam.tools.apps                │ Tool open_app called with query: 'хромин'
+2026-09-05 02:21:04 │ INFO     │ temiradam.tools.app_resolver        │ [APP RESOLVER] Query: 'хромин' (normalized: 'хромин')
+2026-09-05 02:21:04 │ INFO     │ temiradam.tools.app_resolver        │ [APP RESOLVER] No candidate met threshold 0.55
+2026-09-05 02:21:04 │ INFO     │ temiradam.tools.executor            │ Tool open_app executed successfully.
+2026-09-05 02:21:14 │ INFO     │ temiradam.tools.executor            │ Executing tool: open_app with args: {'query': 'хромю'}
+2026-09-05 02:21:14 │ INFO     │ temiradam.tools.apps                │ Tool open_app called with query: 'хромю'
+2026-09-05 02:21:14 │ INFO     │ temiradam.tools.app_resolver        │ [APP RESOLVER] Query: 'хромю' (normalized: 'хромю')
+2026-09-05 02:21:14 │ INFO     │ temiradam.tools.app_resolver        │ [APP RESOLVER] No candidate met threshold 0.55
+2026-09-05 02:21:14 │ INFO     │ temiradam.tools.executor            │ Tool open_app executed successfully.
+2026-09-05 02:22:35 │ INFO     │ temiradam.tools.executor            │ Executing tool: open_app with args: {'query': 'приложение snapshot'}
+2026-09-05 02:22:35 │ INFO     │ temiradam.tools.apps                │ Tool open_app called with query: 'приложение snapshot'
+2026-09-05 02:22:35 │ INFO     │ temiradam.tools.app_resolver        │ [APP RESOLVER] Query: 'приложение snapshot' (normalized: 'приложение snapshot')
+2026-09-05 02:22:35 │ INFO     │ temiradam.tools.app_resolver        │ [APP RESOLVER] No candidate met threshold 0.55
+2026-09-05 02:22:35 │ INFO     │ temiradam.tools.executor            │ Tool open_app executed successfully.
+2026-09-05 02:22:48 │ INFO     │ temiradam.tools.executor            │ Executing tool: open_app with args: {'query': 'положение invidia'}
+2026-09-05 02:22:48 │ INFO     │ temiradam.tools.apps                │ Tool open_app called with query: 'положение invidia'
+2026-09-05 02:22:48 │ INFO     │ temiradam.tools.app_resolver        │ [APP RESOLVER] Query: 'положение invidia' (normalized: 'положение invidia')
+2026-09-05 02:22:48 │ INFO     │ temiradam.tools.app_resolver        │ [APP RESOLVER] No candidate met threshold 0.55
+2026-09-05 02:22:48 │ INFO     │ temiradam.tools.executor            │ Tool open_app executed successfully.
+2026-09-05 02:23:00 │ INFO     │ temiradam.tools.executor            │ Executing tool: open_app with args: {'query': 'телеграм'}
+2026-09-05 02:23:00 │ INFO     │ temiradam.tools.apps                │ Tool open_app called with query: 'телеграм'
+2026-09-05 02:23:00 │ INFO     │ temiradam.tools.app_resolver        │ [APP RESOLVER] Query: 'телеграм' (normalized: 'телеграм')
+2026-09-05 02:23:00 │ INFO     │ temiradam.tools.app_resolver        │ [APP RESOLVER] No candidate met threshold 0.55
+2026-09-05 02:23:00 │ INFO     │ temiradam.tools.executor            │ Tool open_app executed successfully.
+2026-09-05 02:29:48 │ INFO     │ temiradam.tools.app_catalog         │ [APP CATALOG] Loaded 118 applications from cache.

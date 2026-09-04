@@ -167,7 +167,26 @@ class IntentClassifier:
                 self._unload_tier(tier, tier_cfg.model)
                 continue
 
-            # tool is None and not Q&A → might be a Q&A question
+            # tool is None and not Q&A → check if it's an action command before trying Q&A
+            open_verbs = ('откр', 'запуст', 'включ', 'покаж', 'аш', 'open', 'launch')
+            lower_user = text.lower()
+            if any(v in lower_user for v in open_verbs):
+                logger.info("Open verb detected in user text, forcing open tool fallback instead of Q&A")
+                from nlp.fast_matcher import _is_website
+                m = re.search(r'(?:откр\w*|запуст\w*|включ\w*|покаж\w*|аш\w*|open|launch)\s+(.+)', text, re.IGNORECASE)
+                target = m.group(1).strip() if m else text.split()[-1]
+                tool_name = "open_website" if _is_website(target) else "open_app"
+                arg_key = "url" if tool_name == "open_website" else "app"
+                self._unload_tier(tier, tier_cfg.model)
+                return IntentResult(
+                    tool=tool_name,
+                    arguments={arg_key: target},
+                    confidence=0.95,
+                    source="forced_open_fallback",
+                    tier=tier,
+                    language=language,
+                )
+
             # Try Q&A with the same tier before escalating
             logger.info("Tier %s returned no tool, trying Q&A", tier)
             qa_result = self._qa_response(text, language, tier, tier_cfg.model)
@@ -277,13 +296,7 @@ class IntentClassifier:
         self, response: str,
     ) -> tuple[str | None, dict, float] | None:
         """
-        Parse LLM response as a tool call JSON.
-
-        Handles:
-        - Clean JSON
-        - JSON wrapped in markdown code blocks
-        - JSON with extra text before/after
-        - Qwen3 <think> tags
+        Parse LLM response as a tool call JSON or function call.
         """
         response = response.strip()
 
@@ -303,20 +316,33 @@ class IntentClassifier:
         json_match = re.search(r"\{[^{}]*\}", response, re.DOTALL)
         if json_match:
             json_str = json_match.group(0)
-        else:
-            return None
+            try:
+                data = json.loads(json_str)
+                tool = data.get("tool")
+                arguments = data.get("arguments", {})
+                confidence = float(data.get("confidence", 0.5))
+                if not isinstance(arguments, dict):
+                    arguments = {}
+                return tool, arguments, confidence
+            except json.JSONDecodeError:
+                pass
 
-        try:
-            data = json.loads(json_str)
-        except json.JSONDecodeError:
-            logger.warning("JSON parse failed: %s", json_str[:200])
-            return None
+        # Function call regex fallback (e.g. open_app("spotify") or open_website("youtube.com"))
+        fn_match = re.search(r'(open_app|open_website|open_url|close_app|spotify_play|set_volume)\((.*?)\)', response)
+        if fn_match:
+            tool_name = fn_match.group(1)
+            raw_arg = fn_match.group(2).strip(' "\'()')
+            if tool_name in ('open_app', 'close_app'):
+                return tool_name, {'app': raw_arg}, 0.90
+            elif tool_name in ('open_website', 'open_url'):
+                return tool_name, {'url': raw_arg}, 0.90
+            elif tool_name == 'spotify_play':
+                return tool_name, {'query': raw_arg}, 0.90
+            elif tool_name == 'set_volume':
+                try:
+                    return tool_name, {'volume': int(raw_arg)}, 0.90
+                except ValueError:
+                    pass
 
-        tool = data.get("tool")
-        arguments = data.get("arguments", {})
-        confidence = float(data.get("confidence", 0.5))
+        return None
 
-        if not isinstance(arguments, dict):
-            arguments = {}
-
-        return tool, arguments, confidence

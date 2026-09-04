@@ -1,6 +1,6 @@
 <div align="center">
 
-![TemirAdam Banner](/absolute/path/to/temiradam_banner_1788542315775.png)
+![TemirAdam Banner](linux.png)
 
 # Темірадам (TemirAdam)
 **AI Assistant for Linux**

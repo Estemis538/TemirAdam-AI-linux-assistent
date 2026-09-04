@@ -84,3 +84,49 @@ Traceback (most recent call last):
     ...<2 lines>...
     )
 ValueError: Invalid transition: idle -> verifying. Allowed: ['error', 'listening']
+2026-09-04 23:20:13 │ ERROR    │ temiradam.core.assistant            │ Error in main loop
+Traceback (most recent call last):
+  File "/home/estemis1/TemirAdam/core/assistant.py", line 133, in run
+    self._run_once()
+    ~~~~~~~~~~~~~~^^
+  File "/home/estemis1/TemirAdam/core/assistant.py", line 183, in _run_once
+    transcription = self.stt.transcribe(wake_audio)
+  File "/home/estemis1/TemirAdam/stt/engine.py", line 103, in transcribe
+    segments_gen, info = self._model.transcribe(
+                         ~~~~~~~~~~~~~~~~~~~~~~^
+        audio_float32,
+        ^^^^^^^^^^^^^^
+        beam_size=self.config.beam_size,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/estemis1/.local/lib/python3.14/site-packages/faster_whisper/transcribe.py", line 942, in transcribe
+    ) = self.detect_language(
+        ~~~~~~~~~~~~~~~~~~~~^
+        features=features[..., seek:],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        language_detection_segments=language_detection_segments,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        language_detection_threshold=language_detection_threshold,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/estemis1/.local/lib/python3.14/site-packages/faster_whisper/transcribe.py", line 1819, in detect_language
+    encoder_output = self.encode(
+        pad_or_trim(features[..., i : i + self.feature_extractor.nb_max_frames])
+    )
+  File "/home/estemis1/.local/lib/python3.14/site-packages/faster_whisper/transcribe.py", line 1400, in encode
+    return self.model.encode(features, to_cpu=to_cpu)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Library libcublas.so.12 is not found or cannot be loaded
+2026-09-04 23:27:02 │ ERROR    │ temiradam.tts.engine                │ Piper failed: Traceback (most recent call last):
+  File "/home/estemis1/.local/bin/piper", line 6, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/estemis1/.local/lib/python3.14/site-packages/piper/__main__.py", line 143, in main
+    raise ValueError(
+        f"Unable to find voice: {model_path} (use piper.download_voices)"
+    )
+ValueError: Unable to find voice: ru_RU-denis-medium (use piper.download_voices)
+
+2026-09-04 23:27:02 │ ERROR    │ temiradam.tts.engine                │ No TTS engine available (neither Piper nor espeak)
